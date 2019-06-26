@@ -1,6 +1,3 @@
-## Create cache folders under storage/framework
-- Run `make folders`
-
 ## Configuration de l'environnement de dev
 - Copy `.env.example` into `.env` or run `make cenv`
 
