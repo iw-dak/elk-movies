@@ -1,4 +1,3 @@
-<!-- Footer -->
 <footer class="page-footer font-small blue pt-4">
 
   <!-- Footer Links -->
@@ -11,7 +10,7 @@
       <div class="col-md-6 mt-md-0 mt-3">
 
         <!-- Content -->
-        <h5 class="text-uppercase">Footer Content</h5>
+        <h5 class="text-uppercase"><img src="{{ asset('images/logo.png') }}" alt="Logo"></h5>
         <p>Here you can use rows and columns to organize your footer content.</p>
 
       </div>
@@ -23,20 +22,20 @@
       <div class="col-md-3 mb-md-0 mb-3">
 
         <!-- Links -->
-        <h5 class="text-uppercase">Links</h5>
+        <h5 class="text-uppercase">Films</h5>
 
         <ul class="list-unstyled">
           <li>
-            <a href="#!">Link 1</a>
+            <a href="#!">Avengers endgame</a>
           </li>
           <li>
-            <a href="#!">Link 2</a>
+            <a href="#!">Ma</a>
           </li>
           <li>
-            <a href="#!">Link 3</a>
+            <a href="#!">Child's play</a>
           </li>
           <li>
-            <a href="#!">Link 4</a>
+            <a href="#!">Jonh wick 3</a>
           </li>
         </ul>
 
@@ -47,20 +46,20 @@
       <div class="col-md-3 mb-md-0 mb-3">
 
         <!-- Links -->
-        <h5 class="text-uppercase">Links</h5>
+        <h5 class="text-uppercase">Avis</h5>
 
         <ul class="list-unstyled">
           <li>
-            <a href="#!">Link 1</a>
+            <a href="#!">Avengers endgame</a>
           </li>
           <li>
-            <a href="#!">Link 2</a>
+            <a href="#!">Ma</a>
           </li>
           <li>
-            <a href="#!">Link 3</a>
+            <a href="#!">Child's play</a>
           </li>
           <li>
-            <a href="#!">Link 4</a>
+            <a href="#!">Jonh wick 3</a>
           </li>
         </ul>
 
@@ -74,10 +73,8 @@
   <!-- Footer Links -->
 
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2018 Copyright:
-    <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+  <div class="footer-copyright text-center py-3">© 2019 DAK
   </div>
   <!-- Copyright -->
 
 </footer>
-<!-- Footer -->

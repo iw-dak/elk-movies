@@ -1,56 +1,64 @@
 #home 
 {
-    min-height: 100%;
-    // max-width: 1255px;
+    min-height: calc(100vh - 98px - 130px);
     margin: auto;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
     position: relative;
-    height: calc(100vh - 220px);
+    height: 100%;
     background: url("/images/bg.jpg") center no-repeat;
     background-size: cover;
     background-attachment: fixed;
     
-    h1
+    .container-large
     {
-        font-size: 1.5em;
-        color: $white;
-        text-align: center;
-    }
-    ul
-    {
-        list-style: none;
-        margin: 0; 
-        padding: 0;
-    }
+        margin: auto;
+        max-width: 1222px;
 
-    img {
-        max-width: 100%;
-        width: 100%;
-        height: auto;
-        margin-left:1%;
-        margin-bottom: 10px;
-        transition: opacity 0.2s ease-in-out;
-    }
-
-    img:hover {
-        opacity: 0.5;
-    }
-
-    aside 
-    {
-        padding: 13px 28px 15px 28px;
-        background-color: #f0f0f0;
-        border: 1px solid #ddd;
-
-        label 
+                h1
         {
-            color : #399;
+            font-size: 1.5em;
+            color: $white;
+            text-align: center;
+        }
+
+        .main 
+        {
+            background-color: #fff;
+            padding: 20px;
+
+                ul
+            {
+                list-style: none;
+                margin: 0; 
+                padding: 0;
+            }
+
+            img {
+                max-width: 100%;
+                width: 100%;
+                height: auto;
+                margin-left:1%;
+                margin-bottom: 10px;
+                transition: opacity 0.2s ease-in-out;
+            }
+
+            img:hover {
+                opacity: 0.5;
+            }
+
+            aside 
+            {
+                padding: 13px 28px 15px 22px;
+                width: 60%;
+                background-color: #f0f0f0;
+                border: 1px solid #ddd;
+
+                label 
+                {
+                    color : #399;
+                }
+            }
         }
     }
 
-    .main 
-    {
-        background-color: #fff;
-        padding: 20px;
-    }
 }

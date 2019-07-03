@@ -9,9 +9,9 @@
         <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
     </head>
     <body>
-        @include('partials.header')
+        @include('_partials.header')
         @yield('content')
-        @include('partials.footer')
+        @include('_partials.footer')
     </body>
     <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
 </html>
