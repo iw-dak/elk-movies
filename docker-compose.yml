@@ -57,3 +57,8 @@ services:
       volumes:
         - .:/application
         - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.2/fpm/conf.d/99-overrides.ini
+    
+    elasticsearch:
+      image: elasticsearch:6.5.0
+      ports:
+        - "9200:9200"
