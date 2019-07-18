@@ -1,64 +1,100 @@
+.overlay
+{
+    background-color: #343232;
+    opacity: 0.5;
+    position: absolute;
+    border-radius: inherit;
+    width: 100%;
+		min-height: 100vh;
+		z-index: 1;
+}
 #home 
 {
-    min-height: calc(100vh - 98px - 130px);
+    min-height: 100vh;
+		// min-height: calc(100vh - 98px - 130px);
+		z-index: 0;
     margin: auto;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
     position: relative;
     height: 100%;
-    background: url("/images/bg.jpg") center no-repeat;
+		background: url("/images/bg.jpg") rgba(255, 255, 255, 0.3) center no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    
-    .container-large
+
+}
+.container-large
+{
+		margin: 5% auto 0 auto;
+		left: 0;
+		right: 0;
+		max-width: 100%;
+    width: 80%;
+		position: absolute;
+		z-index: 2;
+		display: flex;
+    align-items: center;
+    justify-content: center;
+		h1
+		{
+				font-size: 1.5em;
+				color: $white;
+				text-align: center;
+		}
+
+		.main 
+		{
+				padding: 20px;
+				display: flex;
+				margin: auto;
+				ul
+				{
+						list-style: none;
+						margin: 0; 
+						padding: 0;
+				}
+
+				img {
+						max-width: 100%;
+						width: 100%;
+						height: auto;
+						margin-left:1%;
+						margin-bottom: 10px;
+						transition: opacity 0.2s ease-in-out;
+				}
+
+				img:hover {
+						opacity: 0.5;
+				}
+
+				aside 
+				{
+						padding: 13px 23px 15px 22px;
+						width: 72%;
+						background-color: #f0f0f0;
+						border: 1px solid #ddd;
+
+						label 
+						{
+								color : #399;
+						}
+				}
+		}
+}
+
+/*Media queries*/ //FIXME: Not working... 
+@media only screen and (max-width: 768) {
+    #home
     {
-        margin: auto;
-        max-width: 1222px;
-
-                h1
+        .container-large
         {
-            font-size: 1.5em;
-            color: $white;
-            text-align: center;
-        }
-
-        .main 
-        {
-            background-color: #fff;
-            padding: 20px;
-
-                ul
+            .main 
             {
-                list-style: none;
-                margin: 0; 
-                padding: 0;
-            }
-
-            img {
-                max-width: 100%;
-                width: 100%;
-                height: auto;
-                margin-left:1%;
-                margin-bottom: 10px;
-                transition: opacity 0.2s ease-in-out;
-            }
-
-            img:hover {
-                opacity: 0.5;
-            }
-
-            aside 
-            {
-                padding: 13px 28px 15px 22px;
-                width: 60%;
-                background-color: #f0f0f0;
-                border: 1px solid #ddd;
-
-                label 
-                {
-                    color : #399;
-                }
+                flex-direction: column;
             }
         }
     }
-
+    footer
+    {
+        height: 560px;
+    }
 }

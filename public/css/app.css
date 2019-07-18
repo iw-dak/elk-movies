@@ -11100,40 +11100,64 @@ a.text-dark:focus {
   }
 }
 
+.overlay {
+  background-color: #343232;
+  opacity: 0.5;
+  position: absolute;
+  border-radius: inherit;
+  width: 100%;
+  min-height: 100vh;
+  z-index: 1;
+}
+
 #home {
-  min-height: calc(100vh - 98px - 130px);
+  min-height: 100vh;
+  z-index: 0;
   margin: auto;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   position: relative;
   height: 100%;
-  background: url("/images/bg.jpg") center no-repeat;
+  background: url("/images/bg.jpg") rgba(255, 255, 255, 0.3) center no-repeat;
   background-size: cover;
   background-attachment: fixed;
 }
 
-#home .container-large {
-  margin: auto;
-  max-width: 1222px;
+.container-large {
+  margin: 5% auto 0 auto;
+  left: 0;
+  right: 0;
+  max-width: 100%;
+  width: 80%;
+  position: absolute;
+  z-index: 2;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
 }
 
-#home .container-large h1 {
+.container-large h1 {
   font-size: 1.5em;
   color: #fff;
   text-align: center;
 }
 
-#home .container-large .main {
-  background-color: #fff;
+.container-large .main {
   padding: 20px;
+  display: -webkit-box;
+  display: flex;
+  margin: auto;
 }
 
-#home .container-large .main ul {
+.container-large .main ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-#home .container-large .main img {
+.container-large .main img {
   max-width: 100%;
   width: 100%;
   height: auto;
@@ -11143,19 +11167,33 @@ a.text-dark:focus {
   transition: opacity 0.2s ease-in-out;
 }
 
-#home .container-large .main img:hover {
+.container-large .main img:hover {
   opacity: 0.5;
 }
 
-#home .container-large .main aside {
-  padding: 13px 28px 15px 22px;
-  width: 60%;
+.container-large .main aside {
+  padding: 13px 23px 15px 22px;
+  width: 72%;
   background-color: #f0f0f0;
   border: 1px solid #ddd;
 }
 
-#home .container-large .main aside label {
+.container-large .main aside label {
   color: #399;
+}
+
+/*Media queries*/
+
+@media only screen and (max-width: 768) {
+  #home .container-large .main {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+  }
+
+  footer {
+    height: 560px;
+  }
 }
 
 .inline-form input {
