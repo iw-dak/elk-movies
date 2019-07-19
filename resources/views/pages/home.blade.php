@@ -2,7 +2,7 @@
 
 @section('content')
 		<div class="container-large">
-        @include('pages._partials.main-movies',['title' => '1000 films triés par genre'])
+        @include('pages._partials.main-movies',['movies' => $movies])
     </div>
 		<div class="overlay"></div>
     <div  id="home">

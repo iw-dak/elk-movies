@@ -2,12 +2,14 @@
 
 namespace App;
 
+use App\Observers\Searchable;
 use Illuminate\Database\Eloquent\Model;
 
 class Movie extends Model
 {
+    use Searchable;
+    
     protected $table = 'movies';
-
 
     //Relationships
     public function comments()
@@ -22,7 +24,7 @@ class Movie extends Model
 
     public function actors()
     {
-        return $this->belongsToMany('App\Actor');
+        return $this->belongsToMany('App\Actor')->using(MoviesActors::class);
     }
 
     public function reviews()

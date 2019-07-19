@@ -43,5 +43,9 @@ return [
             'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
         ],
     ],
+    'search' => [
+        'enabled' => true,
+        'host' => explode(',', env('SEARCH_HOSTS')),
+    ],
 
 ];

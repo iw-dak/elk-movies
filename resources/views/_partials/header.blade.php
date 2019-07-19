@@ -20,8 +20,8 @@
         <a class="nav-link" href="#">Films d'actions</a>
       </li>
     </ul>
-    <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher">
+    <form class="form-inline" action="{{ url('search') }}" method="get">
+      <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher" name="query" {{ request('query') }}">
       <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Lancer</button>
       </form>
   </div>

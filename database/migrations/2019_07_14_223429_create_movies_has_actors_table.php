@@ -13,7 +13,7 @@ class CreateMoviesHasActorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('movies_has_actors', function (Blueprint $table) {
+        Schema::create('actor_movie', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('movie_id')->unsigned();
             $table->integer('actor_id')->unsigned();
