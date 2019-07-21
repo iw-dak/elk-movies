@@ -66,7 +66,10 @@ $(document).ready(function () {
       data: { query: query },
     }).done(function (response) {
       $(".container-large").html(response.html);
-
+      if (Object.keys(response).length == 1) {
+        $(".img-responsive").css({ width: '1000px' });
+        $(".popover").css({ top: "5px", left: "-30" });
+      }
     }).fail(function (xhr) {
       $(".container-large").html("Une erreur s'est produite, veuillez relancer votre recherche s'il vous plait.");
 
