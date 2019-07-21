@@ -4,6 +4,7 @@
 use App\Type;
 use App\Actor;
 use App\Movie;
+use App\Review;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -32,6 +33,9 @@ $factory->define(Movie::class, function (Faker $faker) {
         'release_date' => now(),
         'production_date' => now(),
         'poster' => $faker->imageUrl(),
+        'summary' => $faker->text(150),
+        'mark' =>   $faker->numberBetween(1,5),
+        'duration' => $faker->time('H:i'),
         'country' => $faker->country,
         'type_id' => $faker->numberBetween(1,6),
     ];
@@ -40,5 +44,11 @@ $factory->define(Actor::class, function (Faker $faker) {
     return [
         'firstname' => $faker->firstName,
         'lastname' => $faker->lastName,
+    ];
+});
+$factory->define(Review::class, function (Faker $faker) {
+    return [
+        'movie_id' => $faker->numberBetween(1,49),
+        'content' => $faker->text(80),
     ];
 });

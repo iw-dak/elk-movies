@@ -1,6 +1,5 @@
 <?php
 
-use App\Movies\MoviesRepository;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,16 +12,18 @@ use App\Movies\MoviesRepository;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.home', ['movies' => []]);
+Route::get('/fill','MovieController@fillPivot');
+Route::prefix('/')->group(function () {
+    Route::get('', 'MovieController@search');
+    Route::post('', 'MovieController@search');
 });
+Route::get('/type/{type}', 'MovieController@searchByType');
+Route::get('/country/{query}', 'MovieController@searchByCountry');
+Route::get('/movies/top-score', 'MovieController@searchBest');
 
-Route::get('/database', 'MovieController@test');
 
-Route::get('/search/{query?}', function (MoviesRepository $repository) {
-    $movies = $repository->search((string) request('query'));
-    // die($movies);
-    return view('pages.home', [
-        'movies' => $movies,
-    ]);
-});
+// Tests
+Route::get('/db/test', 'MovieController@db');
+// Route::get('/test', function () {
+//     return view('pop');
+// });

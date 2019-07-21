@@ -19,6 +19,9 @@ class CreateMoviesTable extends Migration
             $table->string('country');
             $table->string('releaser');
             $table->string('poster');
+            $table->string('summary');
+            $table->integer('mark');
+            $table->string('duration');
             $table->date('release_date');
             $table->date('production_date');
 

@@ -6,8 +6,36 @@
 .navbar {
     padding: 0.5rem 6rem;
     font-size: 16px;
+    a:active {
+        color: white !important;
+    }
+}
+.navbar-dark .navbar-nav .nav-link:active {
+    color: white !important;
 }
 
 .bg-dark {
     background-color: $black !important;
+}
+
+.searchTab {
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    background: 0 0;
+}
+
+input[type=search] {
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=search]:focus {
+    // width: 100%;
+    display: block;
+}
+
+.navbar-dark .navbar-nav .nav-link .best-mark:hover
+{
+    color: white important;
 }

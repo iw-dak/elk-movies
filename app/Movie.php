@@ -12,11 +12,6 @@ class Movie extends Model
     protected $table = 'movies';
 
     //Relationships
-    public function comments()
-    {
-        return $this->hasMany('App\Review');
-    }
-
     public function type()
     {
         return $this->belongsTo('App\Type');
@@ -24,7 +19,7 @@ class Movie extends Model
 
     public function actors()
     {
-        return $this->belongsToMany('App\Actor')->using(MoviesActors::class);
+        return $this->belongsToMany('App\Actor');
     }
 
     public function reviews()

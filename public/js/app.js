@@ -36767,6 +36767,17 @@ module.exports = function(module) {
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+$("[data-toggle=popover]").popover({
+  trigger: "hover",
+  delay: {
+    "show": 500,
+    "hide": 100
+  },
+  html: true
+}).addClass('my-super-popover');
+
+__webpack_require__(/*! ./movies.js */ "./resources/js/movies.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -36824,6 +36835,17 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/movies.js":
+/*!********************************!*\
+  !*** ./resources/js/movies.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
 
 /***/ }),
 
