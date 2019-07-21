@@ -14207,6 +14207,7 @@ a.text-dark:focus {
   display: flex;
   margin: auto;
   width: 90%;
+  min-height: 100vh;
   /* Overlay */
   /* Apparition overlay sur passage souris */
 }
@@ -14305,9 +14306,11 @@ input[type=search]:focus {
   background-color: white;
   z-index: 4;
   position: absolute;
-  right: 193px;
-  padding: 1%;
-  border-radius: 3%;
+  right: 167px;
+  padding: 8px;
+  width: 20%;
+  border-radius: 2%;
+  top: 52px;
 }
 
 .complete ul {
@@ -14316,6 +14319,11 @@ input[type=search]:focus {
 
 .complete ul li {
   list-style-type: none;
+}
+
+.complete ul li:hover {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  cursor: pointer;
 }
 
 footer {

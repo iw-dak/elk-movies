@@ -121,10 +121,10 @@ class MovieController extends Controller
         
         if(count($types))
         {
-            $typeId = $types[0]->id;
+            $typeId = (int)$types[0]->id;
             $typeLabel = $types[0]->label;
             $movie = new Movie;
-            $movies = $repository->search((string) $typeId, $movie);
+            $movies = $repository->search($typeId, $movie);
             if($typeLabel == "sci-fi")
                 $typeLabel = "Science Fiction";
             elseif($typeLabel == "Comedie")

@@ -16,13 +16,13 @@ class ElasticsearchMoviesRepository implements MoviesRepository
         $this->search = $client;
     }
 
-    public function search(string $query = "", $instance): Collection
+    public function search($query = "", $instance): Collection
     {
         $items = $this->searchOnElasticsearch($query, $instance);
         return $this->buildCollection($items, $instance);
     }
 
-    private function searchOnElasticsearch(string $query, $instance): array
+    private function searchOnElasticsearch($query, $instance): array
     {
 
       if($query == '')

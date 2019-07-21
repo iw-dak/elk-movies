@@ -32,9 +32,5 @@
   </div>
 </nav> 
 <div class="complete hide">
-  <ul class="ul-complete">
-    <li>Test Test Test Test Test Test Test Test</li>
-    <li>Test</li>
-    <li>Test</li>
-  </ul>
+  <ul class="ul-complete"></ul>
 </div>

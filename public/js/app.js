@@ -36760,11 +36760,6 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 $("[data-toggle=popover]").popover({
@@ -36851,9 +36846,78 @@ $(document).ready(function () {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
   });
+  $(document).ajaxComplete(function () {
+    $("[data-toggle=popover]").popover({
+      trigger: "hover",
+      delay: {
+        "show": 500,
+        "hide": 100
+      },
+      html: true
+    });
+  });
   $("#btn-sumbmit").on('click', function (e) {
     e.preventDefault();
     var query = $("#search-input").val();
+    $.ajax({
+      url: '/',
+      type: 'POST',
+      data: {
+        query: query
+      }
+    }).done(function (response) {
+      $(".container-large").html(response.html);
+
+      if (Object.keys(response).length == 1) {
+        $(".img-responsive").css({
+          width: '1000px'
+        });
+        $(".popover").css({
+          top: "5px",
+          left: "-30"
+        });
+      }
+    }).fail(function (xhr) {
+      $(".container-large").html("Une erreur s'est produite, veuillez relancer votre recherche s'il vous plait.");
+    });
+  });
+  $("#search-input").on("input", function (e) {
+    var query = $("#search-input").val();
+
+    if (query || query.length != 0) {
+      $.ajax({
+        url: '/complete',
+        type: 'POST',
+        data: {
+          query: query
+        }
+      }).done(function (response) {
+        var data = JSON.parse(response);
+        console.log();
+        var list = $('.ul-complete');
+        $('.complete').removeClass('hide');
+
+        for (var i = 0; i < data.length; i++) {
+          for (var movie in data) {
+            list.empty();
+            list.append("<li class=\"li-complete\" id=\"li-".concat(i, "\"> ").concat(data[movie].name, " </li>"));
+          }
+        }
+
+        if (data.length == 1) $(".img-responsive").css({
+          width: '1000px'
+        });
+      }).fail(function (xhr) {
+        $(".container-large").html("Une erreur s'est produite, veuillez relancer votre recherche s'il vous plait.");
+      });
+    }
+  });
+  $(document).click(function (e) {
+    $('.complete').addClass('hide');
+  });
+  $('.complete').children().on("click", function (e) {
+    $('.complete').addClass('hide');
+    var query = $(this).text();
     $.ajax({
       url: '/',
       type: 'POST',
@@ -36866,35 +36930,6 @@ $(document).ready(function () {
       $(".container-large").html("Une erreur s'est produite, veuillez relancer votre recherche s'il vous plait.");
     });
   });
-  $("#search-input").on("change", function (e) {
-    var query = $("#search-input").val();
-    $.ajax({
-      url: '/complete',
-      type: 'POST',
-      data: {
-        query: query
-      }
-    }).done(function (response) {
-      console.log(JSON.parse(response)); // $.each(response, function (index, value) {
-      //   console.log(index + ": " + value);
-      // });
-      // $('.complete').removeClass('.hide');
-      // $(".container-large").html(response.html);
-    }).fail(function (xhr) {
-      $(".container-large").html("Une erreur s'est produite, veuillez relancer votre recherche s'il vous plait.");
-    });
-  }); //   $("#search-input").on("focusout", function (e) {
-  // $('.complete').addClass('.hide');
-  // $.ajax({
-  //   url: '/',
-  //   type: 'POST',
-  //   data: { query: query },
-  // }).done(function (response) {
-  //   $(".container-large").html(response.html);
-  // }).fail(function (xhr) {
-  //   $(".container-large").html("Une erreur s'est produite, veuillez relancer votre recherche s'il vous plait.");
-  // });
-  //     });
 });
 
 /***/ }),

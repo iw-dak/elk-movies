@@ -32,8 +32,8 @@ $factory->define(Movie::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'releaser' => $faker->firstName,
-        'release_date' => now(),
-        'production_date' => now(),
+        'release_date' => $faker->dateTimeBetween('-4 years','now'),
+        'production_date' => $faker->dateTimeBetween('-6 years','now'),
         'poster' => $faker->imageUrl(),
         'summary' => $faker->text(150),
         'mark' =>   $faker->numberBetween(1,5),
