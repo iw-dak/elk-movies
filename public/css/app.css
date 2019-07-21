@@ -14157,36 +14157,9 @@ a.text-dark:focus {
   display: none !important;
 }
 
-.overlay {
-  background-color: #343232;
-  opacity: 0.5;
-  position: absolute;
-  border-radius: inherit;
-  width: 100%;
-  min-height: 100vh;
-  z-index: 1;
-}
-
-#home {
-  min-height: 100vh;
-  z-index: 0;
-  margin: auto;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  position: relative;
-  height: 100%;
-  background: url("/images/bg.jpg") rgba(255, 255, 255, 0.3) center no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-}
-
 .container-large {
-  margin: 5% auto 0 auto;
-  left: 0;
-  right: 0;
   max-width: 100%;
-  width: 80%;
-  position: absolute;
-  z-index: 2;
+  z-index: 0;
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;
@@ -14196,6 +14169,30 @@ a.text-dark:focus {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
           flex-direction: column;
+  background: url("/images/bg.jpg") rgba(255, 255, 255, 0.3) center no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+}
+
+.container-large > * {
+  z-index: 2;
+}
+
+.container-large::after {
+  content: "";
+  background-color: #343232;
+  opacity: 0.5;
+  position: absolute;
+  border-radius: inherit;
+  width: 100%;
+  min-height: 100vh;
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
 }
 
 .container-large h1 {
@@ -14209,6 +14206,7 @@ a.text-dark:focus {
   display: -webkit-box;
   display: flex;
   margin: auto;
+  width: 90%;
   /* Overlay */
   /* Apparition overlay sur passage souris */
 }
