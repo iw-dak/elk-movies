@@ -36,7 +36,7 @@
             <a href="{{ url('/country/spain') }}">Espagne</a>
           </li>
           <li>
-            <a href="{{ url('/country/japan') }}">Japon</a>
+            <a href="{{ url('/country/india') }}">Inde</a>
           </li>
         </ul>
 

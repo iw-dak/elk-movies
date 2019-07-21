@@ -8,26 +8,33 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav  mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="{{ url('type/1') }}">Drame</a>
+        <a class="nav-link" href="{{ url('type/drame') }}">Drame</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ url('type/2') }}">Comédie</a>
+        <a class="nav-link" href="{{ url('type/comedie') }}">Comédie</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ url('type/3') }}">Thriller</a>
+        <a class="nav-link" href="{{ url('type/thriller') }}">Thriller</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ url('type/4') }}">Sciense fiction</a>
+        <a class="nav-link" href="{{ url('type/sci-fi') }}">Science fiction</a>
       </li>
       <li class="ml-5 nav-item">
-        <a class="nav-link best-mark" href="{{ url('movies/top-score') }}" style="color:#A91E1E;">Mieux notés</a>
+        <a class="nav-link best-mark" href="{{ url('movies/top-score') }}" style="color:#A91E1E;">Top Five</a>
       </li>
     </ul>
     <form class="form-inline" action="{{ url('/') }}" method="post">
       {{ csrf_field() }}
-      <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher" name="query" {{ request('query') }}">
-      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">lancer</button>
+      <input class="form-control mr-sm-2" type="search" placeholder="Rechercher par film..." aria-label="Rechercher" name="query" value="{{ request('query') }}" id="search-input">
+      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" id="btn-sumbmit">lancer</button>
       </form>
-      
+  
   </div>
 </nav> 
+<div class="complete hide">
+  <ul class="ul-complete">
+    <li>Test Test Test Test Test Test Test Test</li>
+    <li>Test</li>
+    <li>Test</li>
+  </ul>
+</div>

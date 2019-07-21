@@ -7,7 +7,10 @@ use App\Actor;
 use App\Movie;
 
 use Illuminate\Http\Request;
+
 use App\Movies\MoviesRepository;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Database\Eloquent\Collection;
 
 class MovieController extends Controller
@@ -21,8 +24,10 @@ class MovieController extends Controller
             $instance = new Movie;
             $movies = $repository->search("", $instance);
         }
-        if(($request->isMethod('post')))
+        if($request->ajax())
         {
+      
+            $query = $request->get('query');
             $movie = new Movie;
             $movies = $repository->search((string) $query, $movie);
             $actor = new Actor;
@@ -34,17 +39,33 @@ class MovieController extends Controller
                 $actorMovies =  $this->getRelatedMovies($actors, "actor");
                 // add actor's movies to other movies
                 $movies = $movies->merge($actorMovies);
-                // foreach($movies as $m)
-                // {
-                //     echo '<pre>';
-                //     print_r($m->name);
-                //     echo '</pre>';
-                // }die();
             }
+            
+            $html = View::make('pages._partials.main-movies', ['movies' => $movies, 'count' => count($movies), 'query' => $query])->render();
+            return Response::json(['html' => $html]);
         }
-        return view('pages.home', ['movies' => $movies]);
+       
+        return view('pages.home', ['movies' => $movies, 'title' => 'Quel film recherchez-vous ?']);
     }
 
+    public function autoCompletion(Request $request, MoviesRepository $repository)
+    {
+        $query = $request->get('query');
+        $movie = new Movie;
+        $movies = $repository->search((string) $query, $movie);
+        $actor = new Actor;
+        $actors = $repository->search((string) $query, $actor);
+        
+        // if some actors fit the search, get the movies they've played in
+        if(count($actors))
+        {
+            $actorMovies =  $this->getRelatedMovies($actors, "actor");
+            // add actor's movies to other movies
+            $movies = $movies->merge($actorMovies);
+        }
+
+        return json_encode($movies);
+    }
     protected function getRelatedMovies($instance, $type)
     {
         $movies = [];
@@ -90,19 +111,6 @@ class MovieController extends Controller
         echo "<pre>";
         var_dump($test->pivot);
         echo "</pre>";
-        // $movies = Movie::paginate(15);
-        // $response = [
-        //     'pagination' => [
-        //         'total' => $movies->total(),
-        //         'per_page' => $movies->perPage(),
-        //         'current_page' => $movies->currentPage(),
-        //         'last_page' => $movies->lastPage(),
-        //         'from' => $movies->firstItem(),
-        //         'to' => $movies->lastItem()
-        //     ],
-        //     'data' => $movies
-        // ];
-       
     }
 
     public function searchByType(Request $request,  MoviesRepository $repository)
@@ -110,21 +118,47 @@ class MovieController extends Controller
         $query = $request->route('type');
         $type = new Type;
         $types = $repository->search((string) $query, $type);
-        $typesMovies = count($types) ? $this->getRelatedMovies($types, "type") : $types;
-
-        return view('pages.home', ['movies' => $typesMovies]);
+        
+        if(count($types))
+        {
+            $typeId = $types[0]->id;
+            $typeLabel = $types[0]->label;
+            $movie = new Movie;
+            $movies = $repository->search((string) $typeId, $movie);
+            if($typeLabel == "sci-fi")
+                $typeLabel = "Science Fiction";
+            elseif($typeLabel == "Comedie")
+                $typeLabel = "Comédie";
+            return view('pages.home', ['movies' => $movies, 'count' => count($movies), 'type' => $typeLabel]);
+        }
+      
     }
 
     public function searchByCountry(Request $request,  MoviesRepository $repository)
     {
         $query = $request->route('query');
         $movies = $repository->search($query, "country");
-        return view('pages.home', ['movies' => $movies]);
+        switch($query)
+        {
+            case 'usa':
+                $query = "États Unis";
+                break;
+            case 'india':
+                $query = "Inde";
+                break;
+            case 'spain':
+                $query = "Espagne";
+                break;
+            case 'france':
+                $query = "France";
+                break;
+        }
+        return view('pages.home', ['movies' => $movies, 'count' => count($movies), 'country' => $query]);
     }
     public function searchBest(Request $request,  MoviesRepository $repository)
     {
         $query = 4;
         $movies = $repository->search($query, "best");
-        return view('pages.home', ['movies' => $movies]);
+        return view('pages.home', ['movies' => $movies, 'title' => 'Notre top 5 des films les mieux notés dernièrement']);
     }
 }

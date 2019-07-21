@@ -14153,6 +14153,10 @@ a.text-dark:focus {
   }
 }
 
+.hide {
+  display: none !important;
+}
+
 .overlay {
   background-color: #343232;
   opacity: 0.5;
@@ -14189,6 +14193,9 @@ a.text-dark:focus {
           align-items: center;
   -webkit-box-pack: center;
           justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
 }
 
 .container-large h1 {
@@ -14249,11 +14256,6 @@ a.text-dark:focus {
           transition-delay: 0ms;
 }
 
-.container-large .main .popover-title {
-  color: blue !important;
-  font-size: 15px;
-}
-
 .popover {
   top: 15px !important;
   left: -15px !important;
@@ -14297,8 +14299,25 @@ input[type=search]:focus {
   display: block;
 }
 
-.navbar-dark .navbar-nav .nav-link .best-mark:hover {
+.navbar-dark .navbar-nav .best-mark:hover {
   color: white important;
+}
+
+.complete {
+  background-color: white;
+  z-index: 4;
+  position: absolute;
+  right: 193px;
+  padding: 1%;
+  border-radius: 3%;
+}
+
+.complete ul {
+  padding: 0;
+}
+
+.complete ul li {
+  list-style-type: none;
 }
 
 footer {
@@ -14314,5 +14333,10 @@ footer {
 
 .footer-countries .list-unstyled a {
   color: #A91E1E !important;
+  text-decoration: none !important;
+}
+
+.footer-countries .list-unstyled a:hover {
+  color: rgba(255, 255, 255, 0.5) !important;
 }
 

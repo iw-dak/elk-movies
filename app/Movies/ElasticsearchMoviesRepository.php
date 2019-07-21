@@ -25,98 +25,108 @@ class ElasticsearchMoviesRepository implements MoviesRepository
     private function searchOnElasticsearch(string $query, $instance): array
     {
 
-        if($query == '')
-          $items = $this->search->search([
-              'index' => $instance->getSearchIndex(),
-                'from' => 0, 
-                "size" => 10000
-          ]);
-        else
-        {
-          if($instance instanceof \App\Type)
-          {
-            
-              $items = $this->search->search([
-              'index' => $instance->getSearchIndex(),
-              'type' => $instance->getSearchType(),
-              'body' => [
-                  'query' => [
-                      'match' => [
-                          'id' =>  $query
-                      ],
-                  ],
-              ],
-            ]);
-
-            return $items;
-          }
-          elseif($instance == "country")
-          {
-      
-            $column = $instance;
- 
-            $inst = new Movie;
-            $items = $this->search->search([
-              'index' => $inst->getSearchIndex(),
-              'type' => $inst->getSearchType(),
-              'body' => [
-                  'query' => [
-                      'bool' => [
-                          'must' => [
-                            'multi_match' => [
-                              'query' => $query,
-                                'fields' => [
-                                  $column
-                                ],
-                                "operator" => "AND"
-                            ]
-                          ]
-                      ]
-                  ]
-              ]
-            ]);
-            return $items;
-          }
-          elseif($instance == "best")
-          {
-             $instance = new Movie;
-             $items = $this->search->search([
-              'index' => $instance->getSearchIndex(),
+      if($query == '')
+        $items = $this->search->search([
+            'index' => $instance->getSearchIndex(),
               'from' => 0, 
-              "size" => 5,
-              'type' => $instance->getSearchType(),
-              'body' => [
-                  "query" => [
-                    "range" => [
-                        "mark" => [
-                            "gte" => $query,
-                            "boost" => 2.0
-                        ]
-                    ]
-                  ],
-              ],
-            ]);
-            return $items;
-          }
-          elseif($instance instanceof \App\Movie)
-            $fields = ['name', 'releaser', 'country', 'release_date'];
-          elseif($instance instanceof \App\Actor)
-            $fields = ['firstname', 'lastname'];
-      
+              "size" => 10000
+        ]);
+      else
+      {
+        if($instance instanceof \App\Type)
+        {
           $items = $this->search->search([
             'index' => $instance->getSearchIndex(),
             'type' => $instance->getSearchType(),
             'body' => [
                 'query' => [
+                    'match' => [
+                      'label' =>  $query
+                    ],
+                ]
+            ],
+          ]); 
+          return $items;
+        }
+        elseif($instance == "country")
+        {
+    
+          $column = $instance;
+
+          $inst = new Movie;
+          $items = $this->search->search([
+            'index' => $inst->getSearchIndex(),
+            'type' => $inst->getSearchType(),
+            'body' => [
+                'query' => [
+                    'bool' => [
+                        'must' => [
+                          'multi_match' => [
+                            'query' => $query,
+                              'fields' => [
+                                $column
+                              ],
+                              "operator" => "AND"
+                          ]
+                        ]
+                    ]
+                ]
+            ]
+          ]);
+          return $items;
+        }
+        elseif($instance == "best")
+        {
+            $instance = new Movie;
+            $items = $this->search->search([
+            'index' => $instance->getSearchIndex(),
+            'from' => 0, 
+            "size" => 5,
+            'type' => $instance->getSearchType(),
+            'body' => [
+                "query" => [
+                  "range" => [
+                      "mark" => [
+                          "gte" => $query,
+                          "boost" => 2.0
+                      ]
+                  ]
+                ],
+                 "sort" => [
+                  [
+                    "release_date" => [
+                      "order" => "desc"
+                    ]  
+                ]              
+              ]
+            ],
+          ]);
+          return $items;
+        }
+        elseif($instance instanceof \App\Movie)
+        {
+          if(gettype($query) == "string")
+            $fields = ['name', 'releaser', 'country'];
+          elseif(gettype($query) == "integer")
+            $fields = ['type_id'];
+        }
+        elseif($instance instanceof \App\Actor)
+          $fields = ['firstname', 'lastname'];
+       
+        $items = $this->search->search([
+          'index' => $instance->getSearchIndex(),
+          'type' => $instance->getSearchType(),
+           'body' => [
+                'query' => [
                     'multi_match' => [
-                        'fields' =>  $fields,
+                        'fields' => $fields,
                         'query' => $query,
                     ],
                 ],
-            ],
-          ]);
-        }
-        return $items;
+          ],
+        ]);
+      }
+      return $items;
     }
 
     private function buildCollection(array $items, $instance): Collection
@@ -148,10 +158,10 @@ class ElasticsearchMoviesRepository implements MoviesRepository
           if($instance instanceof \App\Actor)
             return Actor::hydrate($sources);
           elseif($instance instanceof \App\Type)
+          {
             return Type::hydrate($sources);
+          }
           else
-            return Movie::hydrate($sources);
-          
+            return Movie::hydrate($sources); 
     }
-
 }
