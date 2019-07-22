@@ -14346,3 +14346,7 @@ footer {
   color: rgba(255, 255, 255, 0.5) !important;
 }
 
+.footer-countries .list-dates {
+  margin-left: 104px !important;
+}
+

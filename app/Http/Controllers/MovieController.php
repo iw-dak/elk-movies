@@ -116,6 +116,13 @@ class MovieController extends Controller
     public function searchByType(Request $request,  MoviesRepository $repository)
     {
         $query = $request->route('type');
+
+        if($query == "drame")
+        {
+            $instance = new Movie;
+            $movies = $repository->search(1, $instance);
+            return view('pages.home', ['movies' => $movies, 'count' => count($movies), 'type' => "Drame"]);
+        }
         $type = new Type;
         $types = $repository->search((string) $query, $type);
         
@@ -140,13 +147,13 @@ class MovieController extends Controller
         $movies = $repository->search($query, "country");
         switch($query)
         {
-            case 'usa':
+            case 'etats-unis':
                 $query = "États Unis";
                 break;
-            case 'india':
+            case 'inde':
                 $query = "Inde";
                 break;
-            case 'spain':
+            case 'espagne':
                 $query = "Espagne";
                 break;
             case 'france':
@@ -154,6 +161,12 @@ class MovieController extends Controller
                 break;
         }
         return view('pages.home', ['movies' => $movies, 'count' => count($movies), 'country' => $query]);
+    }
+    public function searchByDate(Request $request,  MoviesRepository $repository)
+    {
+        $query = $request->route('query');
+        $movies = $repository->search($query, "date");
+        return view('pages.home', ['movies' => $movies, 'count' => count($movies), 'date' => $query]);
     }
     public function searchBest(Request $request,  MoviesRepository $repository)
     {

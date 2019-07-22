@@ -7,10 +7,13 @@
 		<h1 class="mt-3">Critère(s) de recherche : "{{ $query }}" ({{ $count }}) résultat(s) trouvé(s).</h1>
 	@endisset
 	@isset($type)
-		<h1 class="mt-3">Films dans la catégorie "{{ $type }}" ({{ $count }})	</h1>  	
+		<h1 class="mt-3">Films dans la catégorie {{ $type }} ({{ $count }})	</h1>  	
 	@endisset
 	@isset($country)
-		<h1 class="mt-3">Films triés par pays : "{{ $country }}" ({{ $count }})	</h1>
+		<h1 class="mt-3">Films triés par pays : {{ $country }} ({{ $count }})	</h1>
+	@endisset
+	@isset($date)
+		<h1 class="mt-3">Films triés par année de réalisation : {{ $date }} ({{ $count }})	</h1>
 	@endisset
 </div>
 <div class="main">
@@ -30,10 +33,12 @@
 								<small class="float:right;">Durée : {{ $movie->duration}}</small>
 								<li>Réalisé par : {{ $movie->releaser }}</li>
 								@if(count($movie->actors))
+								Joué notamment par :
 									@foreach ($movie->actors as $actor)
-										Joué notamment par :  <li class="ml-2">{{ $actor->firstname }} {{ $actor->lastname }}</li>
+										<li class="ml-2">{{ $actor->firstname }} {{ $actor->lastname }}</li>
 									@endforeach
 								@endif
+								<li>Pays de réalisation : {{ $movie->country }}</li>
 						</ul>
 				</div>
 			</div> 

@@ -27,43 +27,40 @@
 
         <ul class="list-unstyled">
           <li>
-          <a href="{{ url('/country/usa') }}">États Unis</a>
+          <a href="{{ url('/country/etats-unis') }}">États Unis</a>
           </li>
           <li>
             <a href="{{ url('/country/france') }}">France</a>
           </li>
           <li>
-            <a href="{{ url('/country/spain') }}">Espagne</a>
+            <a href="{{ url('/country/espagne') }}">Espagne</a>
           </li>
           <li>
-            <a href="{{ url('/country/india') }}">Inde</a>
+            <a href="{{ url('/country/inde') }}">Inde</a>
           </li>
         </ul>
 
       </div>
       <!-- Grid column -->
       <!-- Grid column -->
-      {{-- <div class="col-md-3 mb-md-0 mb-3">
+      <div class="col-md-3 mb-md-0 mb-3 footer-countries">
 
         <!-- Links -->
-        <h5 class="text-uppercase">Films les mieux notés</h5>
+        <h5 class="text-uppercase">Films par année de sortie</h5>
 
-        <ul class="list-unstyled">
+        <ul class="list-unstyled list-dates">
           <li>
           <a href="{{ url('/date/2019') }}">2019</a>
           </li>
           <li>
-            <a href="{{ url('/date/2018') }}">Avant</a>
+            <a href="{{ url('/date/2018') }}">2018</a>
           </li>
           <li>
-            <a href="{{ url('/date/2017') }}">Espagne</a>
-          </li>
-          <li>
-            <a href="{{ url('/date/2016') }}">Japon</a>
+            <a href="{{ url('/date/2017') }}">2017</a>
           </li>
         </ul>
 
-      </div> --}}
+      </div>
       <!-- Grid column -->
 
     </div>

@@ -19,13 +19,24 @@ use Faker\Generator as Faker;
     |
 */
 
-$factory->define(Type::class, function (Faker $faker) {
-    $types = ['horreur', 'drame', 'comedie', 'sci-fi', 'thriller'];
-    shuffle($types);
-    return [
-        'label' => $types[array_rand($types)],
-    ];
-});
+// $factory->define(Type::class, function (Faker $faker) {
+//     $types = ['horreur', 'drame', 'comedie', 'sci-fi', 'thriller'];
+//     shuffle($types);
+//     return [
+//         [
+//             'label' => "drame",
+//         ],
+//         [
+//             'label' => "comedie"
+//         ],
+//         [
+//             'label' => "thriller",
+//         ],
+//         [
+//             'label' => "sci-fi",
+//         ],
+//     ];
+// });
 $factory->define(Movie::class, function (Faker $faker) {
     $countries = ['usa', 'france', 'spain', 'india', 'thriller'];
     shuffle($countries);
@@ -39,7 +50,7 @@ $factory->define(Movie::class, function (Faker $faker) {
         'mark' =>   $faker->numberBetween(1,5),
         'duration' => $faker->time('H:i'),
         'country' => $countries[array_rand($countries)],
-        'type_id' => $faker->numberBetween(1,6),
+        'type_id' => $faker->numberBetween(1,4),
     ];
 });
 $factory->define(Actor::class, function (Faker $faker) {

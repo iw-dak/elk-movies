@@ -46,6 +46,7 @@ class ElasticsearchMoviesRepository implements MoviesRepository
                 ]
             ],
           ]); 
+          // echo "<pre>";var_dump($items);echo "</pre>";die();
           return $items;
         }
         elseif($instance == "country")
@@ -103,6 +104,44 @@ class ElasticsearchMoviesRepository implements MoviesRepository
           ]);
           return $items;
         }
+        elseif($instance == "date")
+        {
+          if($query == "2019")
+          {
+              $to = "2019-12-31";
+              $from = "2019-01-01";
+          }            
+          elseif($query == "2018")
+          {
+              $to = "2018-12-31";
+              $from = "2018-01-01";
+          }            
+          elseif($query == "2017")
+          {
+              $to = "2017-12-31";
+              $from = "2017-01-01";
+          }            
+          $instance = new Movie;
+          $items = $this->search->search([
+          'index' => $instance->getSearchIndex(),
+          'type' => $instance->getSearchType(),
+          'body' => [
+                "aggs" => [
+                  "range" => [
+                    "date_range" => [
+                        "field" => "date",
+                        "format" => "yyyy-MM-d",
+                        "ranges" => [
+                            [ "to" => $to ], 
+                            ["from" => $from ]
+                        ]
+                    ]
+                  ]
+                ]
+          ],
+        ]);
+          return $items;
+        }
         elseif($instance instanceof \App\Movie)
         {
           if(gettype($query) == "string")
@@ -113,6 +152,7 @@ class ElasticsearchMoviesRepository implements MoviesRepository
         elseif($instance instanceof \App\Actor)
           $fields = ['firstname', 'lastname'];
        
+        
         $items = $this->search->search([
           'index' => $instance->getSearchIndex(),
           'type' => $instance->getSearchType(),

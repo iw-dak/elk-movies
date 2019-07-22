@@ -20,6 +20,7 @@ Route::prefix('/')->group(function () {
 Route::post('/complete', 'MovieController@autoCompletion');
 Route::get('/type/{type}', 'MovieController@searchByType');
 Route::get('/country/{query}', 'MovieController@searchByCountry');
+Route::get('/date/{query}', 'MovieController@searchByDate');
 Route::get('/movies/top-score', 'MovieController@searchBest');
 
 
