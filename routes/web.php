@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('pages.home');
-});
+Route::get('/', 'HomeController@show');
+Route::get('/read', 'HomeController@read');
+Route::get('/write', 'HomeController@write');
