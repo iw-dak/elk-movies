@@ -28,5 +28,3 @@ prod:
 	yarn run production
 cinstall:
 	docker-compose exec php-fpm composer install
-folders:
-	mkdir -p storage/framework/sessions && mkdir -p storage/framework/views && mkdir -p storage/framework/cache && mkdir -p storage/logs && touch storage/logs/laravel.log && sudo chmod 777 -R storage/
