@@ -4,8 +4,62 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "94d4bf9ac7f4a933030e46a346ee2917",
+    "content-hash": "f7c5611ad304f39f2c7c6d41fc4fac7d",
     "packages": [
+        {
+            "name": "bordercloud/sparql",
+            "version": "2.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BorderCloud/SPARQL.git",
+                "reference": "a47f374a84965c462c04d54c32cc9cd8824853ee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BorderCloud/SPARQL/zipball/a47f374a84965c462c04d54c32cc9cd8824853ee",
+                "reference": "a47f374a84965c462c04d54c32cc9cd8824853ee",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7"
+            },
+            "require-dev": {
+                "evert/phpdoc-md": "^0.2.0@dev",
+                "michelf/php-markdown": "^1.7",
+                "phpdocumentor/phpdocumentor": "2.9.0@dev",
+                "phpunit/phpunit": "^6.3",
+                "twig/twig": "~1.3@dev"
+            },
+            "bin": [
+                "bin/query"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "BorderCloud\\SPARQL\\": "src/",
+                    "BorderCloud\\SPARQL\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "CC-BY-SA-4.0"
+            ],
+            "authors": [
+                {
+                    "name": "Karima Rafes",
+                    "email": "karima.rafes@bordercloud.com",
+                    "homepage": "http://www.bordercloud.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Lib PHP very easy for SPARQL 1.1",
+            "homepage": "https://github.com/BorderCloud/SPARQL",
+            "keywords": [
+                "RDF",
+                "sparql"
+            ],
+            "time": "2019-10-28T17:26:15+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
