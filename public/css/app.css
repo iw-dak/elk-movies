@@ -11111,19 +11111,24 @@ a.text-dark:focus {
   background-attachment: fixed;
 }
 
+#home #overlay {
+  background: #141414;
+  opacity: 0.8;
+}
+
 #home .container-large {
   margin: auto;
   max-width: 1222px;
 }
 
 #home .container-large h1 {
-  font-size: 1.5em;
+  font-size: 1.7em;
   color: #fff;
   text-align: center;
 }
 
 #home .container-large .main {
-  background-color: #fff;
+  background-color: transparent;
   padding: 20px;
 }
 
@@ -11136,15 +11141,51 @@ a.text-dark:focus {
 #home .container-large .main img {
   max-width: 100%;
   width: 100%;
-  height: auto;
+  height: 50%;
   margin-left: 1%;
   margin-bottom: 10px;
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
 
-#home .container-large .main img:hover {
+#home .container-large .main .div-movies .thumb {
+  width: 10%;
+  position: absolute;
+  top: 10px;
+  right: 4%;
+  cursor: pointer;
+  display: none;
+  height: auto;
+}
+
+#home .container-large .main .div-movies:hover {
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+#home .container-large .main .div-movies:hover .thumb {
+  display: block;
+}
+
+#home .container-large .main .div-movies:hover .img-responsive {
   opacity: 0.5;
+}
+
+#home .container-large .main .div-movies:hover .img__description {
+  visibility: visible;
+  opacity: 1;
+}
+
+#home .container-large .main .img__description {
+  position: absolute;
+  top: 60px;
+  right: 70px;
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 0.2s, visibility 0.2s;
+  transition: opacity 0.2s, visibility 0.2s;
 }
 
 #home .container-large .main aside {
@@ -11156,6 +11197,10 @@ a.text-dark:focus {
 
 #home .container-large .main aside label {
   color: #399;
+}
+
+#home .white {
+  color: #fff;
 }
 
 .inline-form input {

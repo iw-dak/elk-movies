@@ -1,25 +1,27 @@
 @extends('template')
 
 @section('content')
-    <div  id="home">
+    <div id="home">
         <div class="container-large">
-            @include('pages._partials.main-movies',['title' => '1000 films triés par genre'])
+          <h1 class="pt-5 pb-3">Vous souhaitez consulter les films de quelle plateforme ?</h1>
+        <section class="d-flex main">
+            <div class="row mx-auto">
+                <div class="col-md-7">
+                    <a class="btn btn-outline-primary" href="{{route('movies.filtered','prime')}}">Prime video</a>
+                </div>
+                <div class="col-md-4">
+                    <a class="btn btn-outline-danger" href="{{route('movies.filtered','netflix')}}">Netflix</a>
+                </div>
+            </div>
+        </section> 
+        <section class="d-flex">
+            <div class="row mx-auto">
+                <div class="col-md-4">
+                    <img src="{{ asset('/images/welcome.gif') }}" alt="" class="thumb">
+                </div>
+            </div> 
+        </section>
 
-
-            {{-- foreach ($rows["result"]["variables"] as $variable) {
-            printf("%-20.20s", $variable);
-            echo '|';
-        }
-        echo "\n";
-
-        foreach ($rows["result"]["rows"] as $row) {
-            foreach ($rows["result"]["variables"] as $variable) {
-                printf("%-20.20s", $row[$variable]);
-                echo '|';
-            }
-            echo "\n";
-        } --}}
         </div>
     </div>
-
 @endsection
