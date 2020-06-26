@@ -122,6 +122,7 @@ class HomeController extends Controller
                 GRAPH <https://www.esgi.fr/2019/ESGI5/IW1/projet3>
                 {
                 <http://maliste/vocabulary#'.$platform.'> dc:uuid ?'.$id.' .
+                }
             }';
 
         $rows = $sc->query($q, 'rows');
@@ -180,31 +181,31 @@ class HomeController extends Controller
         $sc->setLogin("ESGI-WEB-2020");
         $sc->setPassword("ESGI-WEB-2020-heUq9f");
 
-        $q = 'PREFIX bd: <http://www.bigdata.com/rdf#>
-            PREFIX wikibase: <http://wikiba.se/ontology#>
-            PREFIX wd: <http://www.wikidata.org/entity/>
-            PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+        $q = '  PREFIX bd: <http://www.bigdata.com/rdf#>
+                PREFIX wikibase: <http://wikiba.se/ontology#>
+                PREFIX wd: <http://www.wikidata.org/entity/>
+                PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 
-            PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+                PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-            SELECT DISTINCT
-            (YEAR(?date) as ?year)
-            ?'.$id.'
-            ?label
-            ?image
-            WHERE {
-                ?object wdt:P31 wd:Q11424 ;
-                        wdt:P577 ?date ;
-                        rdfs:label ?label ;
-                        wdt:'.$pr.' ?'.$id.' ;
-                        wdt:P18 ?image .
-                FILTER (?'.$id.' IN ('.$movie_id.'))
-                FILTER (langMatches(lang(?label), "en"))
-            }
-            ORDER BY DESC (?date)
-            LIMIT 1';
-
+                SELECT DISTINCT
+                (YEAR(?date) as ?year)
+                ?idNetflix
+                ?label
+                ?image
+                WHERE {
+                    ?object wdt:P31 wd:Q11424 ;
+                            wdt:P577 ?date ;
+                            rdfs:label ?label ;
+                            wdt:P1874 ?idNetflix ;
+                            wdt:P18 ?image .
+                    FILTER (?idNetflix = "80175798")
+                    FILTER (langMatches(lang(?label), "en"))
+                }
+                ORDER BY DESC (?date)
+                LIMIT 1';
+            // dd($q);
         $rows = $sc->queryUpdate($q, 'rows');
         $err = $sc->getErrors();
 

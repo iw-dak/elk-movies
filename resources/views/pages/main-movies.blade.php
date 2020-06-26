@@ -38,7 +38,7 @@
                         <!-- TODO: edit foreach with elk data-->
                         @foreach($movies["result"]["rows"] as $movie)
                             <div class="col-md-3 div-movies">
-                                <a href="{{ route('movie.see',$platform,$movie[$id]) }}">
+                                <a href="{{ route('movie.see',[$platform,$movie[$id]]) }}">
                                     <img src="{{ $movie["image"] }}" alt="" class="img-responsive">
                                 </a>
                                 @if ($page == "all")
