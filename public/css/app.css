@@ -11198,6 +11198,10 @@ a.text-dark:focus {
   color: #399;
 }
 
+#home .white {
+  color: #fff;
+}
+
 .inline-form input {
   display: inline-block;
   width: 100px;
