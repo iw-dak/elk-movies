@@ -37046,6 +37046,13 @@ module.exports = function(module) {
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+var nav = document.getElementsByClassName('navbar-item');
+
+document.getElementsByClassName('navbar-item').onclick = function (e) {
+  console.log(e);
+  alert('dfvdfb');
+};
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -37124,8 +37131,8 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/soufian/Documents/ESGI/5IW/WebSemantique/projet/elk-movies/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/soufian/Documents/ESGI/5IW/WebSemantique/projet/elk-movies/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/dachic/ESGI/5IW/S2/Semantique_Web/elk-movies/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/dachic/ESGI/5IW/S2/Semantique_Web/elk-movies/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
