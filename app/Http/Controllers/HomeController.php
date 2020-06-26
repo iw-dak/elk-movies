@@ -172,6 +172,38 @@ class HomeController extends Controller
 
         return redirect()->route('movies.filtered',["platform" => $platform]);
     }
+    
+    public function deleteMovie($platform,$id)
+    {
+        $endpoint = "https://sandbox.bordercloud.com/sparql";
+        $sc = new SparqlClient();
+        $sc->setEndpointWrite($endpoint);
+        $sc->setMethodHTTPRead("POST");
+
+        $sc->setLogin("ESGI-WEB-2020");
+        $sc->setPassword("ESGI-WEB-2020-heUq9f");
+
+        $q = 'PREFIX dc: <http://purl.org/dc/elements/1.1/>
+        PREFIX ns: <http://example.org/ns#>
+        PREFIX my: <http://maliste/vocabulary#>
+        DELETE DATA
+        {
+            GRAPH <https://www.esgi.fr/2019/ESGI5/IW1/projet3>
+            {
+                <http://maliste/vocabulary#'.$platform.'> my:ban "'.$id.'" .
+            }
+        }';
+        
+        $rows = $sc->queryUpdate($q, 'rows');
+        $err = $sc->getErrors();
+
+        if ($err) {
+            print_r($err);
+            throw new \Exception(print_r($err, true));
+        }
+
+        return redirect()->route('movies.all',["platform" => $platform]);
+    }
 
     public function showDetails($platform, $movie_id)
     {
