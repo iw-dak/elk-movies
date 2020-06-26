@@ -11,18 +11,18 @@
 
         <!-- Content -->
         <h5 class="text-uppercase"><img src="{{ asset('images/logo.png') }}" alt="Logo"></h5>
-        <p>Here you can use rows and columns to organize your footer content.</p>
+        <p>Les films présents sur cette plateforme sont issus de Wikidata.</p>
 
       </div>
       <!-- Grid column -->
 
-      <hr class="clearfix w-100 d-md-none pb-3">
+      {{-- <hr class="clearfix w-100 d-md-none pb-3"> --}}
 
       <!-- Grid column -->
-      <div class="col-md-3 mb-md-0 mb-3">
+      {{-- <div class="col-md-3 mb-md-0 mb-3"> --}}
 
         <!-- Links -->
-        <h5 class="text-uppercase">Films</h5>
+        {{-- <h5 class="text-uppercase">Films</h5>
 
         <ul class="list-unstyled">
           <li>
@@ -37,13 +37,13 @@
           <li>
             <a href="#!">Jonh wick 3</a>
           </li>
-        </ul>
+        </ul> --}}
 
       </div>
       <!-- Grid column -->
 
       <!-- Grid column -->
-      <div class="col-md-3 mb-md-0 mb-3">
+      {{-- <div class="col-md-3 mb-md-0 mb-3">
 
         <!-- Links -->
         <h5 class="text-uppercase">Avis</h5>
@@ -63,7 +63,7 @@
           </li>
         </ul>
 
-      </div>
+      </div> --}}
       <!-- Grid column -->
 
     </div>
@@ -73,7 +73,8 @@
   <!-- Footer Links -->
 
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2019 DAK
+  <div class="footer-copyright text-center py-3">
+    © 2020 AKSA
   </div>
   <!-- Copyright -->
 

@@ -9,7 +9,7 @@
         <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
     </head>
     <body>
-        @include('_partials.header')
+        @include('_partials.header',['platform' => session('platform')])
         @yield('content')
         @include('_partials.footer')
     </body>

@@ -6,27 +6,34 @@
     position: relative;
     height: 100%;
     background: url("/images/bg.jpg") center no-repeat;
+    // background: #141414;
+    // background-image: linear-gradient(to bottom,rgba(20,20,20,0) 0,rgba(20,20,20,.15) 15%,rgba(20,20,20,.35) 29%,rgba(20,20,20,.58) 44%,#141414 68%,#141414 60%);
     background-size: cover;
     background-attachment: fixed;
     
+    #overlay
+    {
+        background: #141414;
+        opacity: 0.8;
+    }
     .container-large
     {
         margin: auto;
         max-width: 1222px;
 
-                h1
+        h1
         {
-            font-size: 1.5em;
+            font-size: 1.7em;
             color: $white;
             text-align: center;
         }
 
         .main 
         {
-            background-color: #fff;
+            background-color: transparent;
             padding: 20px;
 
-                ul
+            ul
             {
                 list-style: none;
                 margin: 0; 
@@ -36,14 +43,49 @@
             img {
                 max-width: 100%;
                 width: 100%;
-                height: auto;
+                height: 50%;
                 margin-left:1%;
                 margin-bottom: 10px;
                 transition: opacity 0.2s ease-in-out;
             }
 
-            img:hover {
-                opacity: 0.5;
+            .div-movies .thumb
+            {
+                width: 10%;
+                position: absolute;
+                top: 10px;
+                right: 4%;
+                cursor: pointer;
+                display: none;
+            }
+
+            .div-movies:hover 
+            {
+                transition: opacity 0.2s ease-in-out;
+                cursor: pointer;
+                .thumb
+                {
+                    display: block;
+                }
+                .img-responsive
+                {
+                    opacity: 0.5;
+                }
+                .img__description {
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+            
+            .img__description {
+           position: absolute;
+            top: 60px;
+            right: 70px;
+            color: #fff;
+            visibility: hidden;
+            opacity: 0;
+            -webkit-transition: opacity 0.2s, visibility 0.2s;
+            transition: opacity 0.2s, visibility 0.2s;
             }
 
             aside 
