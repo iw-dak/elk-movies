@@ -204,7 +204,7 @@ class HomeController extends Controller
             throw new \Exception(print_r($err, true));
         }
 
-        return redirect()->route('movies.all',["platform" => $platform]);
+        return redirect()->route('movies.filtered',["platform" => $platform]);
     }
 
     public function showDetails($platform, $movie_id)
