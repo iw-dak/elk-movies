@@ -8,17 +8,17 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav  mr-auto">
       <li class="nav-item active">
-      <a class="nav-link" href="{{ route('movies.filtered',$platform ? $platform : 'netflix') }}">Liste filtrée<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{ route('movies.filtered',$platform ? $platform : 'netflix') }}">Liste filtrée<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ route('movies.all',$platform ? $platform : 'netflix') }}">Liste intégrale</a>
       </li>
-      {{-- <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link" href="#">Thriller</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Films d'actions</a>
-      </li> --}}
+      </li>
     </ul>
     {{-- <form class="form-inline">
       <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher">
