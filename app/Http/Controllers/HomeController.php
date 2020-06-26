@@ -97,7 +97,7 @@ class HomeController extends Controller
             throw new \Exception(print_r($err, true));
         }
    
-        return view('pages.main-movies',['movies' => $rows, 'id' => $id, 'page' => 'all']);
+        return view('pages.main-movies',['movies' => $rows, 'id' => $id, 'platform' => $platform, 'page' => 'all']);
     }
  
     public function getListFromNeptune($platform)
@@ -133,7 +133,7 @@ class HomeController extends Controller
         return $rows;
     }
 
-    public function insertMovie()
+    public function insertMovie($platform,$id)
     {
         $endpoint = "https://sandbox.bordercloud.com/sparql";
         $sc = new SparqlClient();
@@ -146,13 +146,13 @@ class HomeController extends Controller
         $q = 'PREFIX dc: <http://purl.org/dc/elements/1.1/>
         PREFIX ns: <http://example.org/ns#>
         INSERT DATA
-        {
+         { 
             GRAPH <https://www.esgi.fr/2019/ESGI5/IW1/projet3>
             {
-                <http://example/book1>  ns:student "Philippe3" .
+                <http://maliste/vocabulary#'.$platform.'> dc:uuid "'.$id.'" .
             }
         }';
-
+        
         $rows = $sc->queryUpdate($q, 'rows');
         $err = $sc->getErrors();
 
@@ -161,7 +161,7 @@ class HomeController extends Controller
             throw new \Exception(print_r($err, true));
         }
 
-        dd($rows);
+        return redirect()->route('movies.all',["platform" => $platform]);
     }
     // public function read()
     // {
