@@ -5,3 +5,10 @@
  */
 
 require('./bootstrap');
+
+let nav = document.getElementsByClassName('navbar-item');
+
+document.getElementsByClassName('navbar-item').onclick = function (e) {
+  console.log(e);
+  alert('dfvdfb');
+}

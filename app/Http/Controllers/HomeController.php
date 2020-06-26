@@ -16,6 +16,8 @@ class HomeController extends Controller
         $pr = $platform == 'netflix' ? 'P1874' : 'P8055';
         $title = $platform == 'netflix' ? 'Netflix' : 'Amazon Prime';
 
+        $request->session()->put('platform', $platform);
+
         $endpoint = "https://query.wikidata.org/sparql";
         $sc = new SparqlClient();
         $sc->setEndpointRead($endpoint);
@@ -52,7 +54,7 @@ class HomeController extends Controller
             print_r($err);
             throw new \Exception(print_r($err, true));
         }
-        // dd($rows);
+
         return view('pages.main-movies',['movies' => $rows, 'id' => $id, 'platform' => $platform, 'page' => 'filtered', 'title' => $title]);
     }
 
