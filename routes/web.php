@@ -16,3 +16,4 @@ Route::get('/show/filter/{platform}', 'HomeController@showFiltered')->name('movi
 Route::get('/show/blacklist/{platform}', 'HomeController@showBlacklist')->name('movies.all');
 Route::get('/show/{platform}/{id}', 'HomeController@showDetails')->name('movie.see');
 Route::get('/insert/{platform}/{id}', 'HomeController@insertMovie')->name('movie.insert');
+Route::get('/delete/{platform}/{id}', 'HomeController@deleteMovie')->name('movie.delete');

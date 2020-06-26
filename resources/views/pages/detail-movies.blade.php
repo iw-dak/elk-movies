@@ -42,7 +42,7 @@
                         </span>
                         <span class="col-6">
                             <a href="{{ route('movie.insert',['platform' => $platform,'id' => $movie[$id]]) }}">
-                                <img src="{{ asset('/images/thumb.svg') }}" alt="">
+                                <img src="{{ asset('/images/thumb2.svg') }}" alt="">
                             </a> 
                             <p class="justify-content-center d-flex white">Remove from your films</p>
                         </span>

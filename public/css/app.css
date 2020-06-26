@@ -11155,6 +11155,7 @@ a.text-dark:focus {
   right: 4%;
   cursor: pointer;
   display: none;
+  height: auto;
 }
 
 #home .container-large .main .div-movies:hover {

@@ -99,7 +99,7 @@ class HomeController extends Controller
             throw new \Exception(print_r($err, true));
         }
    
-        return view('pages.main-movies',['movies' => $rows, 'id' => $id, 'platform' => $platform, 'page' => 'all', 'title' => $title]);
+        return view('pages.main-movies',['movies' => $rows, 'id' => $id, 'platform' => $platform, 'page' => 'blacklisted', 'title' => $title]);
     }
  
     public function getListFromNeptune($platform)
@@ -117,11 +117,12 @@ class HomeController extends Controller
 
         $q = 'PREFIX dc: <http://purl.org/dc/elements/1.1/>
             PREFIX ns: <http://example.org/ns#>
+            PREFIX my: <http://maliste/vocabulary#>
             SELECT ?'.$id.'
             {
                 GRAPH <https://www.esgi.fr/2019/ESGI5/IW1/projet3>
                 {
-                <http://maliste/vocabulary#'.$platform.'> dc:uuid ?'.$id.' .
+                <http://maliste/vocabulary#'.$platform.'> my:ban ?'.$id.' .
                 }
             }';
 
@@ -152,11 +153,12 @@ class HomeController extends Controller
 
         $q = 'PREFIX dc: <http://purl.org/dc/elements/1.1/>
         PREFIX ns: <http://example.org/ns#>
+        PREFIX my: <http://maliste/vocabulary#>
         INSERT DATA
          { 
             GRAPH <https://www.esgi.fr/2019/ESGI5/IW1/projet3>
             {
-                <http://maliste/vocabulary#'.$platform.'> dc:uuid "'.$id.'" .
+                <http://maliste/vocabulary#'.$platform.'> my:ban "'.$id.'" .
             }
         }';
         

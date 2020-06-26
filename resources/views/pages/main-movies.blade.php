@@ -46,6 +46,11 @@
                                         <img src="{{ asset('/images/thumb.svg') }}" alt="" class="thumb">
                                     </a> 
                                 @endif
+                                @if ($page == "blacklisted")
+                                    <a href="{{ route('movie.delete',['platform' => $platform,'id' => $movie[$id]]) }}">
+                                        <img src="{{ asset('/images/thumb2.png') }}" alt="" class="thumb">
+                                    </a> 
+                                @endif
                             <p class="img__description">{{ $movie["label"] }}</p>
                             </div> 
                         @endforeach
