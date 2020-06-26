@@ -15,4 +15,4 @@ Route::view('/', 'pages.home');
 Route::get('/show/filter/{platform}', 'HomeController@showFiltered')->name('movies.filtered');
 Route::get('/show/all/{platform}', 'HomeController@showAll')->name('movies.all');
 Route::get('/show/{platform}/{id}', 'HomeController@showDetails')->name('movie.see');
-Route::get('/insert/{id}', 'HomeController@insertMovie')->name('movie.insert');
+Route::get('/insert/{platform}/{id}', 'HomeController@insertMovie')->name('movie.insert');

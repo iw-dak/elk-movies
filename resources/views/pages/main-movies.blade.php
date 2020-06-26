@@ -42,7 +42,7 @@
                                     <img src="{{ $movie["image"] }}" alt="" class="img-responsive">
                                 </a>
                                 @if ($page == "all")
-                                    <a href="{{ route('movie.insert',$movie[$id]) }}">
+                                    <a href="{{ route('movie.insert',['platform' => $platform,'id' => $movie[$id]]) }}">
                                         <img src="{{ asset('/images/thumb.svg') }}" alt="" class="thumb">
                                     </a> 
                                 @endif
