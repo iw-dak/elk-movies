@@ -48,7 +48,7 @@
                 margin-bottom: 10px;
                 transition: opacity 0.2s ease-in-out;
             }
-
+            
             .div-movies .thumb
             {
                 width: 10%;
@@ -78,14 +78,14 @@
             }
             
             .img__description {
-           position: absolute;
-            top: 60px;
-            right: 70px;
-            color: #fff;
-            visibility: hidden;
-            opacity: 0;
-            -webkit-transition: opacity 0.2s, visibility 0.2s;
-            transition: opacity 0.2s, visibility 0.2s;
+            position: absolute;
+                top: 60px;
+                right: 70px;
+                color: #fff;
+                visibility: hidden;
+                opacity: 0;
+                -webkit-transition: opacity 0.2s, visibility 0.2s;
+                transition: opacity 0.2s, visibility 0.2s;
             }
 
             aside 

@@ -13,12 +13,6 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ route('movies.all',$platform ? $platform : 'netflix') }}">Liste intégrale</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Thriller</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Films d'actions</a>
-      </li>
     </ul>
     {{-- <form class="form-inline">
       <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher">

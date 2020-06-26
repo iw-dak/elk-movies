@@ -4,7 +4,7 @@
     <div id="home">
         <div id="overlay">
             <div class="container-large">
-                <h1 class="pt-5 pb-3">Liste des films</h1>
+            <h1 class="pt-5 pb-3">Liste des films {{ $title }}</h1>
                 <section class="d-flex main">
                     {{-- <aside class="mb-3 mr-2">
                         <ul>

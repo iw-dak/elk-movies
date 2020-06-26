@@ -12,12 +12,10 @@ class HomeController extends Controller
     public function showFiltered(Request $request, $platform)
     {
         $list = $this->getListFromNeptune($platform);
-        dd($list);
-        $list = [];
+
         $id = $platform == 'netflix' ? 'idNetflix' : 'IdAmazonPrimeVideo';
         $pr = $platform == 'netflix' ? 'P1874' : 'P8055';
-
-        $request->session()->put('platform', $platform);
+        $title = $platform == 'netflix' ? 'Netflix' : 'Amazon Prime';
 
         $endpoint = "https://query.wikidata.org/sparql";
         $sc = new SparqlClient();
@@ -42,7 +40,7 @@ class HomeController extends Controller
                         rdfs:label ?label ;
                         wdt:'.$pr.' ?'.$id.' ;
                         wdt:P18 ?image .
-                FILTER (?'.$id.' NOT IN ('.implode(",",$list).'))
+                FILTER (?'.$id.' NOT IN ("'.implode('","',$list).'"))
                 FILTER (langMatches(lang(?label), "en"))
             }
             ORDER BY DESC (?date)
@@ -56,15 +54,15 @@ class HomeController extends Controller
             throw new \Exception(print_r($err, true));
         }
         // dd($rows);
-        return view('pages.main-movies',['movies' => $rows, 'id' => $id, 'platform' => $platform, 'page' => 'filtered']);
+        return view('pages.main-movies',['movies' => $rows, 'id' => $id, 'platform' => $platform, 'page' => 'filtered', 'title' => $title]);
     }
 
     public function showAll(Request $request, $platform)
     {
-        $list = [];
         $id = $platform == 'netflix' ? 'idNetflix' : 'idPrime';
         $pr = $platform == 'netflix' ? 'P1874' : 'P8055';
-    
+        $title = $platform == 'netflix' ? 'Netflix' : 'Amazon Prime';
+
         $endpoint = "https://query.wikidata.org/sparql";
         $sc = new SparqlClient();
         $sc->setEndpointRead($endpoint);
@@ -100,12 +98,13 @@ class HomeController extends Controller
             throw new \Exception(print_r($err, true));
         }
    
-        return view('pages.main-movies',['movies' => $rows, 'id' => $id, 'platform' => $platform, 'page' => 'all']);
+        return view('pages.main-movies',['movies' => $rows, 'id' => $id, 'platform' => $platform, 'page' => 'all', 'title' => $title]);
     }
  
     public function getListFromNeptune($platform)
     {
         $id = $platform == 'netflix' ? 'idNetflix' : 'IdAmazonPrimeVideo';
+        $ids = [];
 
         $endpoint = "https://sandbox.bordercloud.com/sparql";
         $sc = new SparqlClient();
@@ -133,7 +132,11 @@ class HomeController extends Controller
             throw new \Exception(print_r($err, true));
         }
     
-        return $rows;
+        foreach($rows['result']['rows'] as $movie)
+        {
+            array_push($ids,$movie[$id]);
+        }
+        return $ids;
     }
 
     public function insertMovie($platform,$id)
