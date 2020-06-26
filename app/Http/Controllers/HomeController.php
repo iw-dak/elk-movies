@@ -11,8 +11,8 @@ class HomeController extends Controller
 
     public function showFiltered(Request $request, $platform)
     {
-        // $list = $this->getListFromNeptune($platform);
-        // dd($list);
+        $list = $this->getListFromNeptune($platform);
+        dd($list);
         $list = [];
         $id = $platform == 'netflix' ? 'idNetflix' : 'IdAmazonPrimeVideo';
         $pr = $platform == 'netflix' ? 'P1874' : 'P8055';
@@ -56,7 +56,7 @@ class HomeController extends Controller
             throw new \Exception(print_r($err, true));
         }
         // dd($rows);
-        return view('pages.main-movies',['movies' => $rows, 'id' => $id, 'page' => 'filtered']);
+        return view('pages.main-movies',['movies' => $rows, 'id' => $id, 'platform' => $platform, 'page' => 'filtered']);
     }
 
     public function showAll(Request $request, $platform)
@@ -132,7 +132,6 @@ class HomeController extends Controller
             print_r($err);
             throw new \Exception(print_r($err, true));
         }
-
     
         return $rows;
     }
