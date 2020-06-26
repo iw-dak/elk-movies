@@ -56,7 +56,7 @@ class HomeController extends Controller
             throw new \Exception(print_r($err, true));
         }
         // dd($rows);
-        return view('pages.main-movies',['movies' => $rows, 'id' => $id, 'page' => 'filtered']);
+        return view('pages.main-movies',['movies' => $rows, 'id' => $id, 'platform' => $platform, 'page' => 'filtered']);
     }
 
     public function showAll(Request $request, $platform)
@@ -173,13 +173,9 @@ class HomeController extends Controller
         $id = $platform == 'netflix' ? 'idNetflix' : 'idPrime';
         $pr = $platform == 'netflix' ? 'P1874' : 'P8055';
 
-        $endpoint = "https://sandbox.bordercloud.com/sparql";
+        $endpoint = "https://query.wikidata.org/sparql";
         $sc = new SparqlClient();
-        $sc->setEndpointWrite($endpoint);
-        $sc->setMethodHTTPRead("POST");
-
-        $sc->setLogin("ESGI-WEB-2020");
-        $sc->setPassword("ESGI-WEB-2020-heUq9f");
+        $sc->setEndpointRead($endpoint);
 
         $q = '  PREFIX bd: <http://www.bigdata.com/rdf#>
                 PREFIX wikibase: <http://wikiba.se/ontology#>
@@ -191,30 +187,30 @@ class HomeController extends Controller
 
                 SELECT DISTINCT
                 (YEAR(?date) as ?year)
-                ?idNetflix
+                ?'.$id.'
                 ?label
                 ?image
                 WHERE {
                     ?object wdt:P31 wd:Q11424 ;
                             wdt:P577 ?date ;
                             rdfs:label ?label ;
-                            wdt:P1874 ?idNetflix ;
+                            wdt:'.$pr.' ?'.$id.' ;
                             wdt:P18 ?image .
-                    FILTER (?idNetflix = "80175798")
+                    FILTER (?'.$id.' IN ("'.$movie_id.'"))
                     FILTER (langMatches(lang(?label), "en"))
                 }
                 ORDER BY DESC (?date)
                 LIMIT 1';
             // dd($q);
-        $rows = $sc->queryUpdate($q, 'rows');
+        $rows = $sc->query($q, 'rows');
         $err = $sc->getErrors();
 
         if ($err) {
             print_r($err);
             throw new \Exception(print_r($err, true));
         }
-        dd($rows);
-       return view();
+        //dd($rows);
+        return view('pages.detail-movies',['movie' => $rows["result"]["rows"][0], 'id' => $id, 'platform' => $platform, 'page' => 'details']);
     }
     // public function read()
     // {
