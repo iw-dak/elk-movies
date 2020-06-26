@@ -11,7 +11,7 @@
         <a class="nav-link" href="{{ route('movies.filtered',$platform ? $platform : 'netflix') }}">Liste filtrée<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('movies.all',$platform ? $platform : 'netflix') }}">Liste intégrale</a>
+        <a class="nav-link" href="{{ route('movies.all',$platform ? $platform : 'netflix') }}">Blacklist</a>
       </li>
     </ul>
     {{-- <form class="form-inline">

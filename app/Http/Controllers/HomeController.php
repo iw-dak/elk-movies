@@ -12,7 +12,6 @@ class HomeController extends Controller
     public function showFiltered(Request $request, $platform)
     {
         $list = $this->getListFromNeptune($platform);
-
         $id = $platform == 'netflix' ? 'idNetflix' : 'IdAmazonPrimeVideo';
         $pr = $platform == 'netflix' ? 'P1874' : 'P8055';
         $title = $platform == 'netflix' ? 'Netflix' : 'Amazon Prime';
@@ -57,38 +56,40 @@ class HomeController extends Controller
         return view('pages.main-movies',['movies' => $rows, 'id' => $id, 'platform' => $platform, 'page' => 'filtered', 'title' => $title]);
     }
 
-    public function showAll(Request $request, $platform)
+    public function showBlacklist(Request $request, $platform)
     {
         $id = $platform == 'netflix' ? 'idNetflix' : 'idPrime';
         $pr = $platform == 'netflix' ? 'P1874' : 'P8055';
         $title = $platform == 'netflix' ? 'Netflix' : 'Amazon Prime';
+        $list = $this->getListFromNeptune($platform);
 
         $endpoint = "https://query.wikidata.org/sparql";
         $sc = new SparqlClient();
         $sc->setEndpointRead($endpoint);
-        $q = 'PREFIX bd: <http://www.bigdata.com/rdf#>
-            PREFIX wikibase: <http://wikiba.se/ontology#>
-            PREFIX wd: <http://www.wikidata.org/entity/>
-            PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+        $q = '  PREFIX bd: <http://www.bigdata.com/rdf#>
+                PREFIX wikibase: <http://wikiba.se/ontology#>
+                PREFIX wd: <http://www.wikidata.org/entity/>
+                PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 
-            PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+                PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-            SELECT DISTINCT
-            (YEAR(?date) as ?year)
-            ?'.$id.'
-            ?label
-            ?image
-            WHERE {
-                ?object wdt:P31 wd:Q11424 ;
-                        wdt:P577 ?date ;
-                        rdfs:label ?label ;
-                        wdt:'.$pr.' ?'.$id.' ;
-                        wdt:P18 ?image .
-                FILTER (langMatches(lang(?label), "en"))
-            }
-            ORDER BY DESC (?date)
-            LIMIT 30';
+                SELECT DISTINCT
+                (YEAR(?date) as ?year)
+                ?'.$id.'
+                ?label
+                ?image
+                WHERE {
+                    ?object wdt:P31 wd:Q11424 ;
+                            wdt:P577 ?date ;
+                            rdfs:label ?label ;
+                            wdt:'.$pr.' ?'.$id.' ;
+                            wdt:P18 ?image .
+                    FILTER (?'.$id.' IN ("'.implode('","',$list).'"))
+                    FILTER (langMatches(lang(?label), "en"))
+                }
+                ORDER BY DESC (?date)
+                LIMIT 30';
 
         $rows = $sc->query($q, 'rows');
         $err = $sc->getErrors();
@@ -167,7 +168,7 @@ class HomeController extends Controller
             throw new \Exception(print_r($err, true));
         }
 
-        return redirect()->route('movies.all',["platform" => $platform]);
+        return redirect()->route('movies.filtered',["platform" => $platform]);
     }
 
     public function showDetails($platform, $movie_id)
